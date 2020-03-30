@@ -130,7 +130,7 @@ def parse_file( fname, edges, polygons, transform, screen, color ):
 
         elif line == 'apply':
             matrix_mult( transform, edges )
-            matrix_mult(transform, polygons)
+            matrix_mult( transform, polygons )
 
         elif line == 'clear':
             edges = []
