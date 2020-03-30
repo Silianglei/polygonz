@@ -8,6 +8,7 @@ The file follows the following format:
      Every command is a single character that takes up a line
      Any command that requires arguments must have those arguments in the second line.
      The commands are as follows:
+
          sphere: add a sphere to the POLYGON matrix -
                  takes 4 arguemnts (cx, cy, cz, r)
          torus: add a torus to the POLYGON matrix -
@@ -15,6 +16,7 @@ The file follows the following format:
          box: add a rectangular prism to the POLYGON matrix -
               takes 6 arguemnts (x, y, z, width, height, depth)
          clear: clears the edge and POLYGON matrices
+
 	 circle: add a circle to the edge matrix -
 	         takes 4 arguments (cx, cy, cz, r)
 	 hermite: add a hermite curve to the edge matrix -
@@ -42,6 +44,7 @@ The file follows the following format:
                save the screen to a file -
                takes 1 argument (file name)
          quit: end parsing
+
 See the file script for an example of the file format
 """
 ARG_COMMANDS = [ 'box', 'sphere', 'torus', 'circle', 'bezier', 'hermite', 'line', 'scale', 'move', 'rotate', 'save' ]
@@ -71,7 +74,7 @@ def parse_file( fname, edges, polygons, transform, screen, color ):
 
         elif line == 'torus':
             #print 'TORUS\t' + str(args)
-            add_torus(polygons,
+            add_torus(edges,
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), steps_3d)
 
@@ -130,7 +133,7 @@ def parse_file( fname, edges, polygons, transform, screen, color ):
 
         elif line == 'apply':
             matrix_mult( transform, edges )
-            matrix_mult( transform, polygons )
+            matrix_mult( transform , polygons)
 
         elif line == 'clear':
             edges = []
